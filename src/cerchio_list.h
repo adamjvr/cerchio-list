@@ -27,40 +27,29 @@ SOFTWARE.
 
 #include <Arduino.h>
 
-// Define a simple data structure to be stored in the list
 template <typename T>
 struct CerchioListNode {
-    T data;                // Data of the node, templated to allow any type
-    CerchioListNode* next; // Pointer to the next node in the list
+    T data;
+    CerchioListNode* next;
 
-    // Constructor to initialize the node with data
     CerchioListNode(T val) : data(val), next(nullptr) {}
 };
 
-// Define the intrusively linked list class
 template <typename T>
 class CerchioList {
 public:
-    // Constructor: Initializes the list with an empty head
     CerchioList();
-
-    // Destructor: Frees memory by deleting all nodes
     ~CerchioList();
-
-    // Function to add a node to the list
     void addNode(T val);
-
-    // Function to remove a node from the list
     T removeNode(T val);
-
-    // Function to print the elements of the list
     void printList();
-
-    // Function to get the element at a specific position in the list
     T getElement(int position);
 
 private:
-    CerchioListNode<T>* head; // Pointer to the first node in the list
+    CerchioListNode<T>* head;
 };
+
+// Include the template implementation
+#include "cerchio_list_impl.h"
 
 #endif // CERCHIO_LIST_H
