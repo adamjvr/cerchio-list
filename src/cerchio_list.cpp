@@ -38,9 +38,10 @@ void CerchioList<T>::addNode(T val) {
 
 // Function to remove a node from the list
 template <typename T>
-void CerchioList<T>::removeNode(T val) {
+T CerchioList<T>::removeNode(T val) {
     CerchioListNode<T>* current = head;
     CerchioListNode<T>* prev = nullptr;
+    T removedValue = T(); // Default value if the element is not found
 
     // Search for the node with the specified value
     while (current != nullptr && current->data != val) {
@@ -50,6 +51,8 @@ void CerchioList<T>::removeNode(T val) {
 
     // If the node with the specified value is found
     if (current != nullptr) {
+        removedValue = current->data; // Save the value of the removed node
+
         // If the node is the head of the list
         if (prev == nullptr) {
             head = current->next;
@@ -58,6 +61,8 @@ void CerchioList<T>::removeNode(T val) {
         }
         delete current; // Free the memory of the removed node
     }
+
+    return removedValue;
 }
 
 // Function to print the elements of the list
@@ -70,6 +75,22 @@ void CerchioList<T>::printList() {
         current = current->next; // Move to the next node
     }
     Serial.println(); // Print a newline at the end
+}
+
+// Function to get the element at a specific position in the list
+template <typename T>
+T CerchioList<T>::getElement(int position) {
+    CerchioListNode<T>* current = head;
+    int currentPosition = 0;
+
+    // Traverse the list to the specified position
+    while (current != nullptr && currentPosition < position) {
+        current = current->next;
+        currentPosition++;
+    }
+
+    // Return the data at the specified position, or a default value if not found
+    return (current != nullptr) ? current->data : T();
 }
 
 // Destructor definition

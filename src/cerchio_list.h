@@ -51,10 +51,13 @@ public:
     void addNode(T val);
 
     // Function to remove a node from the list
-    void removeNode(T val);
+    T removeNode(T val);
 
     // Function to print the elements of the list
     void printList();
+
+    // Function to get the element at a specific position in the list
+    T getElement(int position);
 
 private:
     CerchioListNode<T>* head; // Pointer to the first node in the list
